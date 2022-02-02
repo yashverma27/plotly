@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<script src="C:/Users/vermyas/node_modules/plotly.js-dist-min/plotly.min.js"></script>
+<head>
+  <link rel="stylesheet" href="myStyles.css">
+</head>
+<body>
+
+<div id="myPlot" ></div>
+<div id="myPlot1" ></div>
+<div id="myPlot2" ></div>
+
+
+<script>
+
+// var  classes = [];
+// var Noofstudents = [];
+// d3.json("./graph1.json", function(data) {
+//         //console.log(data);
+
+//         classes.push(data.classes)
+        
+//         //console.log(classes) // shown on console as [Array(7)]
+
+//         Noofstudents.push(data.Noofstudents)
+        
+//         //console.log(Noofstudents) // shown on console as [Array(7)]
+        
+//     })
+
+// const mockJson = {
+//   classes: ["c1", "c2", "c3", "c4", "c5","c6","c7","c8","c9", "c10", "c20", "c30", "c40", "c50","c60","c70","c80","c90"],
+//   : [1, 2, 6, 3, 7, 11, 121]
+// }
+
+// const jsonRequest = function() {
+//   return new Promise(function(resolve) {
+//     setTimeout(function(){
+//       resolve(mockJson)
+//     }, 2000);
+//   });
+// }
+
+// jsonRequest().then(function(data) {        
+//     var trace = {
+//       x: data.value,
+//       y: data.score,
+//       type: "bar"
+//     };
+
+
+
+
+var graph1 = [{
+  x:["c1", "c2", "c3", "c4", "c5","c6","c7","c8","c9", "c10", "c20", "c30", "c40", "c50","c60","c70","c80","c90"],
+  y:[55, 49, 44, 24, 15,60,44,63,35,551, 492, 443, 244, 155,606,447,638,359],
+  type:"bar",
+  marker: {
+      color: 'brown'
+    },
+}];
+var graph2 = [{
+        x:[1,2,3,4,5,6,7,8,9],
+        y:[55, 49, 44, 24, 15,60,44,63,35],
+        xaxis:{title:'No of days'},
+        yaxis:{title:'people visited'},
+        mode: 'lines+markers',
+        type:"scatter",
+        marker: {
+      color: 'brown'
+    }
+        
+}];
+var graph3 = [
+  {
+    type: 'bar',
+    x: ['2016','2017','2018'],
+    y: [500,600,700],
+    base: [-500,-600,-700],
+    hovertemplate: '%{base}',
+    marker: {
+      color: 'brown'
+    },
+    name: 'expenses'
+  },
+  {
+    type: 'bar',
+    x: ['2016','2017','2018'],
+    y: [300,400,700],
+    base: 0,
+    marker: {
+      color: 'blue'
+    },
+    name: 'revenue'
+  }]
+
+
+var layout = {title:'Different Types Plot',xaxis:{title:'class'},font: {
+        family: 'Poppins',
+        size: 18,
+        color: 'white'
+      },yaxis:{title:'No of students'},plot_bgcolor:"black",
+      paper_bgcolor:"black"}
+var layout1={xaxis:{title:'no of days'},yaxis:{title:'people visited'},plot_bgcolor:"black",
+      paper_bgcolor:"black",
+      font: {
+        family: 'Poppins',
+        size: 18,
+        color: 'white'
+      }}
+var layout2={plot_bgcolor:"black",paper_bgcolor:"black",font: {
+        family: 'Poppins',
+        size: 18,
+        color: 'white'
+      }}
+
+let config={
+    responsive: true
+
+};
+var data=[graph1]
+Plotly.newPlot("myPlot", graph1, layout,{showSendToCloud:true},config);
+Plotly.newPlot("myPlot1", graph2,layout1,{showSendToCloud:true},config);
+Plotly.newPlot("myPlot2", graph3,layout2,{showSendToCloud:true},config);
+
+// if (document.getElementById('myPlot')) {
+// 	//draw average line
+	
+// }
+drawAvgLine(document.getElementById("myPlot"))
+
+function drawAvgLine(graph) {
+	var graphData = graph.data;
+  console.log(graphData) //Loaded traces
+	//making new layout
+	var newLayout = {
+    type: 'bar',
+		shapes: [{
+			type: 'line',
+			xref: 'paper',
+			x0: 0,
+			y0: getAverageY(graphData),
+			line: {
+				color: 'green',
+				width: 2,
+				dash: 'dot'
+			}
+		}]
+	};
+  Plotly.update("myPlot", graphData, newLayout)
+}
+
+
+
+function getAverageY(graphData) {
+  var sum=0;
+  console.log(graphData)
+  console.log(graphData[0].y.length)
+  n=graphData[0].y.length
+  
+  for(var i=0;i<n;i++)
+  {
+    sum= sum + graphData[i].y;
+
+  }
+  var avg=sum/n;
+  return avg;
+}
+
+
+</script>
+
+</body>
+</html>
