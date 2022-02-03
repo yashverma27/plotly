@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Plotly</title>
+    <!-- <script src="http://d3js.org/d3.v3.min.js"></script> -->
+    <script src="C:/Users/vermyas/node_modules/plotly.js-dist-min/plotly.min.js"></script>
+</head>
+<body>
+    <div id="mydiv"></div>
+    <script>
+        
+        var url='https://raw.githubusercontent.com/yashverma27/plotly/main/graph.json'
+        var classes=[];
+        let Noofstudents=[];
+        var a;
+        var b;
+
+        b=fetch(url).then(res => res.json()).then(out =>{a=out;console.log(a)})
+        console.log(b)
+    //     function getJSON(url) {
+    //     var resp ;
+    //     var xmlHttp ;
+
+    //     resp  = '' ;
+    //     xmlHttp = new XMLHttpRequest();
+
+    //     if(xmlHttp != null)
+    //     {
+    //         xmlHttp.open( "GET", url, false );
+    //         xmlHttp.send( null );
+    //         resp = xmlHttp.responseText;
+    //     }
+
+    //     return resp ;
+    // }
+    // var gjson ;
+    // gjson = getJSON(url) ;
+    // console.log(gjson)
+    // console.log(gjson.length)
+  
+    
+
+
+    //         for(let i=0;i<gjson.length;i++)
+    //         {
+    //             classes.push(gjson[i][0])
+    //             Noofstudents.push(gjson[i][1])
+    //         }
+    //          console.log(classes)
+            
+            
+    //         var graph1 = [{
+    //              x:classes,
+    //              y:Noofstudents,
+    //             type:"bar",
+    //             marker: {
+    //                  color: 'brown'
+    //                     },
+    //         }];
+    //         var layout = {title:'Different Types Plot',xaxis:{title:'class'},font: {
+    //                                 family: 'Poppins',
+    //                                 size: 18,
+    //                                 color: 'white'
+    //                     },yaxis:{title:'No of students'},plot_bgcolor:"black",
+    //                     paper_bgcolor:"black"};
+    //         let config={
+    //                 responsive: true
+
+    //             };
+    //         Plotly.newPlot('mydiv', graph1, layout,config);
+            
+            
+
+        
+            // var data = [
+            //     { type: "scattermapbox", lon: lon, lat: lat, hoverinfo: "lon+lat" }
+            // ];
+            
+            // var layout = {
+            //     mapbox: { style: "dark", zoom: 2, center: { lon: -150, lat: 60 } },
+            //     margin: { t: 0, b: 0 }
+            // };
+            
+
+            // var config = {
+            //     mapboxAccessToken: "your access token",
+            //     responsive: true
+            // };
+
+            
+        
+    </script>
+</body>
+</html>
