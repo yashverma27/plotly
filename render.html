@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+    
+    <title>{% block title %}My First Dashboard{% endblock %}</title> 
+    <head>
+        
+        <!-- <h3>id</h3>
+        <div id="dev"></div> -->
+        <link rel="stylesheet" href='/static/style.css' />
+        {% for id in ids %}
+        <h3>{{id}}</h3>
+        <div id="{{id}}"></div>
+        {% endfor %}
+    </head>
+
+    <body>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.6/d3.min.js"></script>
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+        
+        <!-- <div id="mydiv",style="font-family:verdana;"></div> -->
+       
+        <script type="text/javascript">
+            var graph = {{graphJSON | safe }};
+            var ids = {{ids | safe }};
+            // var mean={{mean|safe}};
+            // console.log(mean)
+
+            for(var i in graph){
+                Plotly.plot(ids[i],
+                graph[i].data,graph[i].layout || {})
+
+            }
+            // Plotly.update(mean,graph.data,graph.layout)
+            // Plotly.plot("dev",
+            //     graph.data,graph.layout || {})
+        </script>
+        
+    </body>
+</html>
